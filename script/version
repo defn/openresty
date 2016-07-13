@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+function version {
+  local shome="${_openresty_home:-"$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"}"
+  source "$shome/script/profile"
+
+  local ver_openresty="$(resty -V 2>&1 | awk '$1 == "resty" {print $2}' || true)"
+  local ver_nginx="$(resty -V 2>&1 | awk '$1 == "nginx" {print $3}' | cut -d/ -f2 || true)"
+  jq -n \
+    --arg openresty "$ver_openresty" \
+    --arg nginx "$ver_nginx" \
+    '{openresty: $openresty, nginx: $nginx}'
+}
+
+version "$@"
