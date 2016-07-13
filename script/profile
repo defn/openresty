@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+function profile {
+  local shome="${_openresty_home:-"$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"}"
+
+  export OPENRESTY_VERSION='1.9.15.1'
+}
+
+profile

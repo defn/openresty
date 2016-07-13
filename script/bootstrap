@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+function home_bootstrap {
+  local shome="${_openresty_home:-"$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"}"
+  source "$shome/script/profile"
+
+  pkg ensure devel/pcre
+
+  cache curl "openresty-${OPENRESTY_VERSION}.tar.gz" "https://openresty.org/download/openresty-${OPENRESTY_VERSION}.tar.gz"
+  mkdir "$shome/vendor"
+  cd "$shome/vendor"
+  tar xvfz "${CACHE_DIR}/curl/openresty-${OPENRESTY_VERSION}.tar.gz"
+  cd "openresty-${OPENRESTY_VERSION}"
+  ./configure --prefix="$shome/install" --with-cc-opt="-I/opt/pkgsrc/install/include/" --with-ld-opt="-L/opt/pkgsrc/install/lib/"
+  gmake -j4
+  make install
+}
+
+home_bootstrap "$@"
