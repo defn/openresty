@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+function fresh {
+  local shome="${_openresty_home:-"$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"}"
+  source "$shome/script/profile"
+
+  if [[ -x "$(which resty 2>&- || true)" ]]; then
+    return 0
+  fi
+}
+
+fresh "$@"
