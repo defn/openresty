@@ -10,6 +10,11 @@ function main {
 
   case "${1:-}" in
     default)
+      case "$(uname -s)" in
+        Linux)
+          export LD_LIBRARY_PATH="/opt/pkgsrc/install/lib"
+          ;;
+      esac
       nginx -p "$shome" -c "$shome/nginx.conf" -g "daemon off;"
       ;;
     *)
