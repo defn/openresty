@@ -2,6 +2,7 @@
 
 function profile {
   local shome="${_openresty_home:-"$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"}"
+  PATH="$shome/install/bin:$PATH"
 
   export OPENRESTY_VERSION='1.9.15.1'
 }
