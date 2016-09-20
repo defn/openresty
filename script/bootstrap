@@ -11,7 +11,7 @@ function home_bootstrap {
   cd "$shome/vendor"
   tar xvfz "${CACHE_DIR}/curl/openresty-${OPENRESTY_VERSION}.tar.gz"
   cd "openresty-${OPENRESTY_VERSION}"
-  ./configure --prefix="$shome/install" --with-cc-opt="-I/opt/pkgsrc/install/include/" --with-ld-opt="-L/opt/pkgsrc/install/lib/"
+  ./configure --prefix="$shome/install" --with-cc-opt="-I${PKG_HOME}/install/include/" --with-ld-opt="-L${PKG_HOME}/install/lib/"
   gmake -j4
   make install
 }

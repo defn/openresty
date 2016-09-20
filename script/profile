@@ -4,7 +4,7 @@ function profile {
   local shome="${_openresty_home:-"$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"}"
   PATH="$shome/install/bin:$shome/install/luajit/bin:$shome/install/nginx/sbin:$PATH"
 
-  export OPENRESTY_VERSION='1.9.15.1'
+  export OPENRESTY_VERSION='1.11.2.1'
 }
 
 profile
